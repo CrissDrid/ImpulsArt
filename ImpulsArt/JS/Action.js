@@ -9,6 +9,7 @@ button.onclick = () => {
 	input.click(); //if user clicks on the button, then the input also clicked
 };
 
+//Comentario
 input.addEventListener("change", function () {
 	//getting user selected file, and [0] means if the user selects multiple files, we'll select only the first one
 	file = this.files[0];
