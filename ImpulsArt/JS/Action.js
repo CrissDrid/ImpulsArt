@@ -88,6 +88,7 @@ deleteButton.addEventListener("click", function () {
 	}
 });
 
+//Comentario
 const guardarButton = document.querySelector(".guardar");
 guardarButton.addEventListener("click", function () {
 	const imgTag = dropArea.querySelector("img");
