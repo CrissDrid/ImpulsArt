@@ -104,22 +104,29 @@
     <div class="row">
 
         <div class="col-4 col-12 col-md-4 ml-3">
+
         <button type="button" class="bot w-75 btn btn-success"  style="font-size: 35px;" onclick="RedirigirCrearUsuario()">Crear nuevo usuario +</button>
-        
+
         </div>
 
         <div class="col-4 col-12 col-md-4 ml-3">
-          <form action="GestionUsuario.php" method="get">
-            <button name="MostrarTodo" type="summit">Mostrar todos los registros</button>
-          </form> 
+    
         </div>
 
         <div class="col-4 col-12 col-md-4 ml-3">
+
             <form action="GestionUsuario.php" method="get">
-            <input class="form-control" type="text" name="busqueda" placeholder="Buscar por nombre" required>
+            <input class="form-control" type="text" name="busqueda" placeholder="Buscar por nombre o apellido" required>
             <br>
-            <button type="submit" class="bg-danger" name="buscar">Buscar</button>
+            <button type="submit" class="btn btn-outline-success" name="buscar">Buscar</button>
             </form>
+
+            <br>
+
+            <form action="GestionUsuario.php" method="get">
+            <button name="MostrarTodo" type="submit" class="btn btn-outline-primary" style="position: relative; left: 100px; top: -63px;">Mostrar todos los registros</button>
+          </form> 
+          
         </div>
 
     </div>
@@ -169,8 +176,8 @@ if (isset($_GET['buscar'])) {
       <td><?php echo $mostrar['Contrasena']?></td>
       <td>
         <div>
-        <?php echo "<a href='EditarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>EDITAR</a>";?>
-        <?php echo "<a href='EliminarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>BORRAR</a>";?>
+        <?php echo "<a class='btn btn-outline-primary' href='EditarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>EDITAR</a>";?>
+        <?php echo "<a class='btn btn-outline-danger' href='EliminarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>BORRAR</a>";?>
        </div>
     </td>
    </tr>
@@ -195,8 +202,8 @@ if (isset($_GET['buscar'])) {
       <td><?php echo $mostrar['Contrasena']?></td>
       <td>
         <div>
-        <?php echo "<a href='EditarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>EDITAR</a>";?>
-        <?php echo "<a href='EliminarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>BORRAR</a>";?>
+        <?php echo "<a class='btn btn-outline-primary' href='EditarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>EDITAR</a>";?>
+        <?php echo "<a class='btn btn-outline-danger' href='EliminarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>BORRAR</a>";?>
        </div>
     </td>
    </tr>
@@ -222,8 +229,8 @@ if (isset($_GET['buscar'])) {
       <td><?php echo $mostrar['Contrasena']?></td>
       <td>
         <div>
-        <?php echo "<a href='EditarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>EDITAR</a>";?>
-        <?php echo "<a href='EliminarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>BORRAR</a>";?>
+        <?php echo "<a class='btn btn-outline-primary' href='EditarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>EDITAR</a>";?>
+        <?php echo "<a class='btn btn-outline-danger' href='EliminarUsuario.php?id=" . $mostrar['Pk_Identificacion'] . "'>BORRAR</a>";?>
        </div>
     </td>
    </tr>
