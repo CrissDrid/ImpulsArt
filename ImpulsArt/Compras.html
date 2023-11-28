@@ -9,8 +9,8 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="shortcut icon" href="Imagenes/cepillo-de-pintura.png">
   <link rel="stylesheet" href="CSS/Estilo.css">
-  <link rel="stylesheet" href="CSS/EstiloCompras.css"> <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="CSS/EstiloCompras.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
@@ -33,7 +33,8 @@
             </button>
             <div class="offcanvas offcanvas-start " id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">ImpulsArt</h5>
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" onclick="redirectToImpulsArt()"
+                  onmouseenter="this.style.cursor='pointer'">ImpulsArt</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                   aria-label="Close"></button>
               </div>
@@ -68,9 +69,10 @@
         </nav>
       </div>
       <div class="columna col-12 col-md-4 col-lg-4 text-center titulo-container">
-        <h1 class="titulo1 ">Impuls</h1>
-        <h1 class="titulo2 ">Art</h1>
-        <img class="pincel img-fluid" src="Imagenes/cepillo-de-pintura.png" alt="">
+        <h1 class="titulo1" onclick="redirectToImpulsArt()" onmouseenter="this.style.cursor='pointer'">Impuls</h1>
+        <h1 class="titulo2" onclick="redirectToImpulsArt()" onmouseenter="this.style.cursor='pointer'">Art</h1>
+        <img class="pincel img-fluid" onclick="redirectToImpulsArt()" onmouseenter="this.style.cursor='pointer'"
+          src="Imagenes/cepillo-de-pintura.png" alt="">
       </div>
     </div>
   </div>
@@ -84,7 +86,7 @@
         <p class="precio">$199<span>.99</span></p>
         <a href="Compras map.html">
           <button>Informacion</button>
-          </a>
+        </a>
       </div>
     </div>
     <div>
@@ -94,7 +96,7 @@
         <p class="precio">$299<span>.99</span></p>
         <a href="Compras map.html">
           <button>Informacion</button>
-          </a>
+        </a>
       </div>
     </div>
     <div>
@@ -103,7 +105,7 @@
         <p>Producto 3</p>
         <p class="precio">$399<span>.99</span></p>
         <a href="Compras map.html">
-        <button>Informacion</button>
+          <button>Informacion</button>
         </a>
       </div>
     </div>
@@ -120,7 +122,7 @@
       <div class="informacion">
         <p>Producto 5</p>
         <p class="precio">$599<span>.99</span></p>
-        <button >Informacion</button>
+        <button>Informacion</button>
       </div>
     </div>
     <div>
@@ -176,7 +178,11 @@
       </div>
     </footer>
   </div>
-
+  <script>
+    function redirectToImpulsArt() {
+      window.location.href = "ImpulsArt.html";
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
