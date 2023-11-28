@@ -1,0 +1,31 @@
+.dropdown {
+    transform: translateX(-25px);
+    /* Mueve el elemento hacia la derecha */
+}
+
+.dropdown-toggle {
+    border-color: blueviolet !important;
+    color: aliceblue !important;
+}
+
+.dropdown-menu {
+    transform: translateX(30px);
+    background-color: blueviolet !important;
+    border-color: blueviolet !important;
+    color: aliceblue !important;
+}
+
+.dropdown-item {
+    transform: translateY(-15px);
+    color: aliceblue !important;
+    border-radius: 8px;
+}
+
+.dropdown-item.active {
+    background-color: blueviolet !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgb(96, 15, 172) !important;
+    color: #f8f9fc !important;
+}

@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="shortcut icon" href="Imagenes/cepillo-de-pintura.png">
+  <link rel="stylesheet" href="CSS/EstiloAdmin.css">
   <link rel="stylesheet" href="CSS/Estilo.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +62,15 @@
                     <a class="nav-link" href="SubirObraSubasta.html">Subastar obra</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="../impulsart/PHP/GestionUsuario.php">Gestionar usuarios</a>
+                    <div class="container">
+                      <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Gestion</button>
+                        <ul class="dropdown-menu dropdown custom-dropdown-menu">
+                          <li><a class="dropdown-item active" href="../impulsart/PHP/GestionUsuario.php">Gestion de
+                              Usuario</a></li>
+                        </ul>
+                      </div>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -211,7 +220,6 @@
       </div>
     </footer>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
