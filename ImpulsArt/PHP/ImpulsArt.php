@@ -64,7 +64,7 @@
                   <div class="columna col-12 col-md-4 col-lg-4 text-center titulo-container">
                         <h1 class="titulo1 ">Impuls</h1>
                         <h1 class="titulo2 ">Art</h1>
-                        <img class="pincel img-fluid" src="Imagenes/cepillo-de-pintura.png" alt="">
+                        <img class="pincel img-fluid" src="../Imagenes/cepillo-de-pintura.png" alt="">
                     </div>
 
                     <div class="columna-link col-12 col-md-4 col-lg-4 ">
@@ -108,12 +108,11 @@
         <?php
         include_once "ConexionBD.php";
 
-        // Consulta para obtener todos los productos
         $select = "SELECT * FROM obra ORDER BY  PkCod_Producto";
         $query = mysqli_query($conectar, $select);
 
-        // Iterar a través de los resultados y generar el HTML del carrusel
         while ($mostrar = mysqli_fetch_assoc($query)) {
+          
             echo "<li class='card'>";
             //echo "<div class='img'><img src='Imagenes/" . $mostrar['imagen'] . "' alt='img' draggable='false'></div>";
             echo "<h2 class='justify-center text-center'>" . $mostrar['NombreProducto'] . "</h2>";

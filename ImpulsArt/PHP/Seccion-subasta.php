@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ImpulsArt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="shortcut icon" href="Imagenes/cepillo-de-pintura.png">
-    <link rel="stylesheet" href="CSS/Estilo.css">
+    <link rel="shortcut icon" href="../Imagenes/cepillo-de-pintura.png">
+    <link rel="stylesheet" href="../CSS/Estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <script src="JS/Script.js" defer></script>
+    <script src="../JS/Script.js" defer></script>
   </head>
   <body>
     <div class="container-fluid-1">
@@ -64,7 +64,7 @@
                   <div class="columna col-12 col-md-4 col-lg-4 text-center titulo-container">
                         <h1 class="titulo1 ">Impuls</h1>
                         <h1 class="titulo2 ">Art</h1>
-                        <img class="pincel img-fluid" src="Imagenes/cepillo-de-pintura.png" alt="">
+                        <img class="pincel img-fluid" src="../Imagenes/cepillo-de-pintura.png" alt="">
                     </div>
 
                     <div class="columna-link col-12 col-md-4 col-lg-4 ">
@@ -98,55 +98,34 @@
 <br>
 <br>
 
-      <h5>Obras en subasta</h5>
-      <br>
-      <div class="row-img">
-        <i id="left" class="icon1 fa-solid fa-angle-left"></i>
-        <ul class="carousel">
-          <li class="card">
-          <div class="img"><img src="Imagenes/Img 1.jpg" alt="img" draggable="flase"></div>
-          <h2 class="justify-center">Ola de Kanagawa</h2>
-          <span>Recreacion de la postal mas Famosa de Kanagawa</span>
-          </li>
-          <li class="card">
-          <div class="img"><img src="Imagenes/Img 2.jpg" alt="img" draggable="flase"></div>
-          <h2>The Bedroom</h2>
-          <span>Recreacion de la obra de arte de Van Gohg</span>
-          </li>
-          <li class="card">
-          <div class="img"><img src="Imagenes/Img 3.jpg" alt="img" draggable="flase"></div>
-          <h2>Autorretrato</h2>
-          <span>Recreacion del autorretrato de Vincent Van Gohg </span>
-          </li>
-          <li class="card">
-          <div class="img"><img src="Imagenes/Img 4.jpg" alt="img" draggable="flase"></div>
-          <h2>Florero</h2>
-          <span href="ImpulsArt.html">Florero en arcilla al horno</span>
-          <a href="Subasta.html">Hacer subasta</a>
-          </li>
-          <li class="card">
-          <div class="img"><img src="Imagenes/Img 5.jpg" alt="img" draggable="flase"></div>
-          <h2>Alka Seltzer</h2>
-          <span>Recreacion de la escultura pop de los años 20</span>
-          </li>
-          <li class="card">
-          <div class="img"><img src="Imagenes/Img 6.jpg" alt="img" draggable="flase"></div>
-          <h2>The Coral</h2>
-          <span>Escultura representativa de un Coral</span>
-          </li>
-          <li class="card">
-            <div class="img"><img src="Imagenes/Img 7.jpg" alt="img" draggable="flase"></div>
-            <h2>La Pluma</h2>
-            <span>Escultura de acero que recrea una pluma bañada en oro</span>
-            </li>
-            <li class="card">
-            <div class="img"><img src="Imagenes/Img 8.jpg" alt="img" draggable="flase"></div>
-            <h2>Edtaonisl</h2>
-            <span>Recreacion de la pintura al oleo de Francis Picabia</span>
-            </li>
-          </ul>
-        <i id="right" class="icon2 fa-solid fa-angle-right"></i>
-    </div>
+<h5>Obras del dia</h5>
+<br>
+<div class="row-img">
+    <i id="left" class="icon1 fa-solid fa-angle-left"></i>
+    <ul class="carousel">
+        <?php
+        include_once "ConexionBD.php";
+
+        $select = "SELECT * from obra inner join subasta on obra.PkCod_Producto = subasta.fkCodProducto;";
+        $query = mysqli_query($conectar, $select);
+
+        while ($mostrar = mysqli_fetch_assoc($query)) {
+            echo "<li class='card'>";
+            //echo "<div class='img'><img src='Imagenes/" . $mostrar['imagen'] . "' alt='img' draggable='false'></div>";
+            echo "<h2 class='justify-center text-center'>" . $mostrar['NombreProducto'] . "</h2>";
+            echo "<span>" . $mostrar['descripcion'] . "</span>";
+            echo "<a class='btn btn-outline-primary' href='Subasta.php?id=" . $mostrar['fkCodProducto'] . "'>Ver obra</a>";
+            echo "</li>";
+            
+            $mostrar['Peso'];
+            $mostrar['Tamano'];
+            $mostrar['categoria'];
+        }
+        ?>
+    </ul>
+    <i id="right" class="icon2 fa-solid fa-angle-right"></i>
+</div>
+
     <br>
     <br>
     <br>
