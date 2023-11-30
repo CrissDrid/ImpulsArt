@@ -240,7 +240,6 @@ if (isset($_GET['buscar'])) {
 ?>
 </tbody>
 
-
 </table>
 
     </div>
