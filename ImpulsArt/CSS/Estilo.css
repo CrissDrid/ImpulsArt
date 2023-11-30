@@ -72,8 +72,9 @@ h5 {
 }
 
 .offcanvas-title {
-	color: aliceblue;
-	font-size: 35px;
+	color: aliceblue !important;
+	font-size: 35px !important;
+	cursor: pointer !important;
 }
 
 .navbar {
