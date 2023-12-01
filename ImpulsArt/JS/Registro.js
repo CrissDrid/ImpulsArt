@@ -8,7 +8,8 @@ function validarYRedirigirregistro() {
     var Numero = document.getElementById("Numero").value;
     var mensajeError = document.getElementById("mensajeError");
 
-    if (nombre==""||apellido==""||correo==""||contrasena==""||fecha_nacimiento==""||direccion==""||Numero=="") {
+    //Commit
+    if (nombre == "" || apellido == "" || correo == "" || contrasena == "" || fecha_nacimiento == "" || direccion == "" || Numero == "") {
         mensajeError.textContent = "Falta llenar uno o más campos.";
         mensajeError.style.display = "block";
     } else {
