@@ -1,5 +1,9 @@
-function guardarDatos() {
-    // Obtener los valores de los campos del formulario excepto la imagen
+const guardarButton = document.querySelector(".guardar");
+
+guardarButton.addEventListener("click", function () {
+    const imgTag = dropArea.querySelector("img"); // Obtener la etiqueta img
+
+    // Obtener los valores del formulario
     var nombreProd = document.getElementsByName("nombreProd")[0].value;
     var costo = document.getElementsByName("costo")[0].value;
     var peso = document.getElementsByName("peso")[0].value;
@@ -8,36 +12,43 @@ function guardarDatos() {
     var categoria = document.getElementsByName("categoria")[0].value;
     var descripcion = document.getElementsByName("descripcion")[0].value;
 
-    // Validar que no haya campos vacíos
-    if (nombreProd === '' || costo === '' || peso === '' || tamaño === '' || cantidad === '' || categoria === '' || descripcion === '') {
-        alert('Por favor, complete todos los campos.');
-        return; // Detener el proceso si hay campos vacíos
-    }
+    // Verificar si hay una imagen y si todos los campos del formulario están completos
+    if (imgTag && (nombreProd !== '' && costo !== '' && peso !== '' && tamaño !== '' && cantidad !== '' && categoria !== '' && descripcion !== '')) {
 
-    // Hacer la solicitud AJAX para guardar los datos
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                alert('Datos guardados correctamente.');
-                // Aquí podrías redirigir o realizar alguna acción adicional después de guardar los datos
-            } else {
-                alert('Error al guardar los datos.');
+        // Crear un objeto FormData para enviar los datos
+        const formData = new FormData();
+        const file = input.files[0]; // Obtener el archivo de imagen seleccionado
+
+        formData.append('imagine', file); // Agregar la imagen al FormData
+        formData.append('nombreProd', nombreProd);
+        formData.append('costo', costo);
+        formData.append('peso', peso);
+        formData.append('tamaño', tamaño);
+        formData.append('cantidad', cantidad);
+        formData.append('categoria', categoria);
+        formData.append('descripcion', descripcion);
+        formData.append('nombreImg', file.name); // Agregar el nombre del archivo al FormData
+
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const uploadUrl = "../ImpulsArt/PHP/SubirObra.php";
+
+        // Configurar la función que maneja la respuesta de la solicitud
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    alert('Datos guardados correctamente.');
+                    // Aquí podrías redirigir o realizar alguna acción adicional después de guardar los datos
+                } else {
+                    alert('Error al guardar los datos.');
+                }
             }
-        }
-    };
+        };
 
-    // Preparar los datos a enviar
-    var datos = new FormData();
-    datos.append('nombreProd', nombreProd);
-    datos.append('costo', costo);
-    datos.append('peso', peso);
-    datos.append('tamaño', tamaño);
-    datos.append('cantidad', cantidad);
-    datos.append('categoria', categoria);
-    datos.append('descripcion', descripcion);
-
-    // Enviar los datos al archivo PHP para guardar en la base de datos
-    xhr.open('POST', '../ImpulsArt/PHP/SubirObra.php', true);
-    xhr.send(datos);
-}
+        // Abrir una solicitud POST y enviar el FormData
+        xhr.open('POST', uploadUrl, true);
+        xhr.send(formData);
+    } else {
+        alert("Por favor, complete todos los campos y seleccione una imagen.");
+    }
+});

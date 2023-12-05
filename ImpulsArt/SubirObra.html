@@ -109,7 +109,7 @@
   <!-- Fin del Header -->
 
   <!-- Inicio Contenido -->
-  <form class="needs-validation" action="SubirObra.php" method="post">
+  <form class="needs-validation" id="formulario" action="SubirObra.php" method="post" enctype="multipart/form-data">
     <div class="container">
       <div class="row-SubirObra">
         <div class="col-6">
@@ -117,7 +117,7 @@
             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <header>Arrastrar y Soltar para Cargar Archivo</header>
             <button type="button">Buscar Archivo</button>
-            <input type="file" name="imagen" hidden>
+            <input type="file" id="imagine" name="imagine" hidden>
           </div>
           <div class="botones">
             <button type="button" class="delete">Eliminar</button>
@@ -167,7 +167,7 @@
           </div>
           <br>
           <div class="botones d-flex justify-content-center align-items-center">
-            <button type="button" class="botones guardar" id="botonGuardar" onclick="guardarDatos()">Guardar</button>
+            <button type="button" class="botones guardar" id="botonGuardar">Guardar</button>
           </div>
         </div>
       </div>
@@ -245,7 +245,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script src="JS/ScriptSubirObra.js"></script>
-  <script src="JS/ScriptGuardarObra.js"></script>
+  <script src="../ImpulsArt/JS/ScriptGuardarObra.js"></script>
   <script src="JS/ScriptDesc.js"></script>
 </body>
 

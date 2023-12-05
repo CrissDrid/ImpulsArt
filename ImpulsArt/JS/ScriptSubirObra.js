@@ -89,3 +89,6 @@ deleteButton.addEventListener("click", function () {
 		alert("No hay una imagen para eliminar.");
 	}
 });
+
+
+
