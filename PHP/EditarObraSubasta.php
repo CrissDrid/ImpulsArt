@@ -6,8 +6,8 @@
      <title>ImpulsArt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="shortcut icon" href="Imagenes/cepillo-de-pintura.png">
-    <link rel="stylesheet" href="CSS/Estilo.css">
-    <link rel="stylesheet" href="CSS/EstilosObra.css">
+    <link rel="stylesheet" href="../CSS/Estilo.css">
+    <link rel="stylesheet" href="../CSS/EstilosObra.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <script src="JS/Script.js" defer></script>
+    <script src="../JS/Script.js" defer></script>
   </head>
   <body>
 
@@ -99,18 +99,43 @@
 </div>
 <br>
 <br>
+
+<?php
+
+include_once "ConexionBD.php";
+
+$fk_CodProducto = $_GET['id'];
+$select = "SELECT NombreProducto, Costo, Peso, Tamano, categoria, FechaFinalizacion from obra
+inner join subasta on obra.PkCod_Producto = subasta.fkCodProducto
+where fkCodProducto='".$fk_CodProducto."'";
+$query = mysqli_query($conectar, $select);
+
+$mostrar = mysqli_fetch_assoc($query);
+$Nombre = $mostrar['NombreProducto'];
+$Precio = $mostrar['Costo'];
+$Peso = $mostrar['Peso'];
+$Tamano = $mostrar['Tamano'];
+$Categoria = $mostrar['categoria'];
+$FechaFinalizacion = $mostrar['FechaFinalizacion'];
+
+?>
+
+
+
 <div class="row justify-content-end">
     <div class="col-md-7 order-md-2">
         <div class="contenedor container">
             <div class="row g-5">
                 <div class="col-md-7 col-lg-8">
-                    <h1 class="texto mb-3">Subastar obra</h1>
-                    <form action="SubastarObraBD.php" method="post">
+                    <h1 class="texto mb-3">Editar obra en subasta</h1>
+                    <form action="ActualizarDatosSubasta.php" method="post">
+
+                    <input type="hidden" name="id" value="<?php echo $fk_CodProducto; ?>">
 
                         <div class="col-12">
                             <label for="username" class="form-label">Nombre de la obra</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control" name="nombre" placeholder="nombre" required>
+                                <input type="text" class="form-control" name="nombre" placeholder="nombre" value="<?php echo $Nombre ?>" required>
                                 <div class="invalid-feedback">
                                     Se requiere el nombre
                                 </div>
@@ -122,7 +147,7 @@
                         <div class="col-12">
                             <label for="username" class="form-label">Precio minimo</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control" name="precioinicial" placeholder="$" required>
+                                <input type="text" class="form-control" name="precioinicial" placeholder="$" value="<?php echo $Precio ?>" required>
                                 <div class="invalid-feedback">
                                     Se requiere el precio minimo de la obra
                                 </div>
@@ -133,7 +158,7 @@
 
                             <div class="col-12">
                                 <label for="firstName" class="form-label">Peso</label>
-                                <input type="text" class="form-control" name="peso" placeholder="Peso ejemplo: 5 kg" value="" required>
+                                <input type="text" class="form-control" name="peso" placeholder="Peso ejemplo: 5 kg" value="<?php echo $Peso ?>" required>
                                 <div class="invalid-feedback">
                                     Se requiere el peso de tu obra
                                 </div>
@@ -144,7 +169,7 @@
                         <div class="col-12">
                           <label for="username" class="form-label">Tamaño</label>
                           <div class="input-group has-validation">
-                              <input type="text" class="form-control" name="tamano" placeholder="Tamaño ejemplo: 40x80 cm" required>
+                              <input type="text" class="form-control" name="tamano" placeholder="Tamaño ejemplo: 40x80 cm" value="<?php echo $Tamano ?>" required>
                               <div class="invalid-feedback">
                                   Se requiere el tamaño de su obra
                               </div>
@@ -156,7 +181,7 @@
                     <div class="col-12">
                       <label for="username" class="form-label">Categoria de la obra</label>
                       <div class="input-group has-validation">
-                          <input type="text" class="form-control" name="categoria" placeholder="Categoria (pintura, maqueta, ceramica, etc)" required>
+                          <input type="text" class="form-control" name="categoria" placeholder="Categoria (pintura, maqueta, ceramica, etc)" value="<?php echo $Categoria ?>" required>
                           <div class="invalid-feedback">
                               Se requiere la categoria de su obra
                           </div>
@@ -168,7 +193,7 @@
                     <div class="col-12">
                       <label for="username" class="form-label">Fecha finalizacion de su subasta</label>
                       <div class="input-group has-validation">
-                          <input type="date" class="form-control" name="fechafinalizacion" placeholder="Tiempo" required>
+                          <input type="date" class="form-control" name="fechafinalizacion" placeholder="Tiempo" value="<?php echo $FechaFinalizacion ?>" required>
                           <div class="invalid-feedback">
                               Se requiere saber cuando se acaba la subasta
                           </div>
@@ -176,20 +201,11 @@
                   </div>
 
                   <br>
-
-                    <div class="col-12">
-                      <label for="username" class="form-label">Duracion (hr)</label>
-                      <div class="input-group has-validation">
-                          <input type="time" class="form-control" name="duracionsubasta" placeholder="Tiempo" required>
-                          <div class="invalid-feedback">
-                              Se requiere saber la duracion (hr) de la subasta
-                          </div>
-                      </div>
-                  </div>
                         
                     <br>
                     <div class="d-flex justify-content-center align-items-center">
-                        <button class="bot w-30 btn btn-primary" type="submit">Subastar obra</button>
+                        <button class="btn btn-primary" type="submit">Editar obra en subasta</button>
+                        <a href="GestionObraSubasta.php" class="btn btn-danger">Cancelar</a>
                     </div>
                   </form>
                 </div>

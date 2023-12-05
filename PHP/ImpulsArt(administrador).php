@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+include_once "ConexionBD.php";
+
+$idUser = $_SESSION['id_user'];
+
+$select = "SELECT * FROM usuario where Pk_Identificacion ='$idUser'";
+$query = mysqli_query($conectar, $select);
+$datos = mysqli_fetch_assoc($query);
+
+?>
+
 <!doctype html>
 <html lang="es">
 
@@ -8,7 +22,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="shortcut icon" href="Imagenes/cepillo-de-pintura.png">
-  <link rel="stylesheet" href="CSS/Estilo.css">
+  <link rel="stylesheet" href="../CSS/Estilo.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-  <script src="JS/Script.js" defer></script>
+  <script src="../JS/Script.js" defer></script>
 </head>
 
 <body>
@@ -61,7 +75,10 @@
                     <a class="nav-link" href="SubirObraSubasta.html">Subastar obra</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="../impulsart/PHP/GestionUsuario.php">Gestionar usuarios</a>
+                    <a class="nav-link" href="GestionUsuario.php">Gestionar usuarios</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="PHP/GestionObraSubasta.php">Gestionar obras subasta</a>
                   </li>
                 </ul>
               </div>
@@ -78,12 +95,19 @@
       <div class="columna-link col-12 col-md-4 col-lg-4 ">
         <ul class="nav nav-underline justify-content-end">
           <li class="nav-item">
-            <h5 class="text-white">Carlos Cordero</h5>
+            <h5 class="text-white"><?php echo $datos['Nombre'] . " " . $datos['Apellidos']; ?></h5>
           </li>
           <h5 class="separacion">/</h6>
-            <li class="nav-item">
-              <i class="bi bi-person-circle icono-grande"></i>
-            </li>
+
+          <div class="dropdown">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="bi bi-person-circle icono-grande"></i>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="CerrarSesion.php">Cerrar sesion</a></li>
+  </ul>
+</div>
+
         </ul>
         <div class="container">
           <div class="row">
@@ -107,53 +131,27 @@
   <br>
 
   <h5>Obras del dia</h5>
-  <br>
-  <div class="row-img">
+<br>
+<div class="row-img">
     <i id="left" class="icon1 fa-solid fa-angle-left"></i>
     <ul class="carousel">
-      <li class="card">
-        <div class="img"><img src="Imagenes/Img 1.jpg" alt="img" draggable="flase"></div>
-        <h2 class="justify-center">Ola de Kanagawa</h2>
-        <span>Recreacion de la postal mas Famosa de Kanagawa</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="Imagenes/Img 2.jpg" alt="img" draggable="flase"></div>
-        <h2>The Bedroom</h2>
-        <span>Recreacion de la obra de arte de Van Gohg</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="Imagenes/Img 3.jpg" alt="img" draggable="flase"></div>
-        <h2>Autorretrato</h2>
-        <span>Recreacion del autorretrato de Vincent Van Gohg </span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="Imagenes/Img 4.jpg" alt="img" draggable="flase"></div>
-        <h2>Florero</h2>
-        <span>Florero en arcilla al horno</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="Imagenes/Img 5.jpg" alt="img" draggable="flase"></div>
-        <h2>Alka Seltzer</h2>
-        <span>Recreacion de la escultura pop de los años 20</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="Imagenes/Img 6.jpg" alt="img" draggable="flase"></div>
-        <h2>The Coral</h2>
-        <span>Escultura representativa de un Coral</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="Imagenes/Img 7.jpg" alt="img" draggable="flase"></div>
-        <h2>La Pluma</h2>
-        <span>Escultura de acero que recrea una pluma bañada en oro</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="Imagenes/Img 8.jpg" alt="img" draggable="flase"></div>
-        <h2>Edtaonisl</h2>
-        <span>Recreacion de la pintura al oleo de Francis Picabia</span>
-      </li>
+        <?php
+
+        $select = "SELECT * FROM obra ORDER BY  PkCod_Producto";
+        $query = mysqli_query($conectar, $select);
+
+        while ($mostrar = mysqli_fetch_assoc($query)) {
+          
+            echo "<li class='card'>";
+            //echo "<div class='img'><img src='Imagenes/" . $mostrar['imagen'] . "' alt='img' draggable='false'></div>";
+            echo "<h2 class='justify-center text-center'>" . $mostrar['NombreProducto'] . "</h2>";
+            echo "<span>" . $mostrar['descripcion'] . "</span>";
+            echo "</li>";
+        }
+        ?>
     </ul>
     <i id="right" class="icon2 fa-solid fa-angle-right"></i>
-  </div>
+</div>
   <br>
   <br>
   <br>

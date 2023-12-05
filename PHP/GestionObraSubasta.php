@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ImpulsArt</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="shortcut icon" href="../Imagenes/cepillo-de-pintura.png">
+    <link rel="stylesheet" href="../CSS/EstiloGestionObraSubasta.css">
     <link rel="stylesheet" href="../CSS/Estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +40,7 @@
                     <div class="offcanvas-body">
                       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                          <a class="nav-link" href="ImpulsArt.html">Inicio</a>
+                          <a class="nav-link" href="ImpulsArt.php">Inicio</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="SubirObra.html">Subir Obras</a>
@@ -98,34 +100,181 @@
 <br>
 <br>
 
-<h5>Obras del dia</h5>
-<br>
-<div class="row-img">
-    <i id="left" class="icon1 fa-solid fa-angle-left"></i>
-    <ul class="carousel">
-        <?php
-        include_once "ConexionBD.php";
+<div class="container-fluid">
 
-        $select = "SELECT * from obra inner join subasta on obra.PkCod_Producto = subasta.fkCodProducto;";
-        $query = mysqli_query($conectar, $select);
+    <div class="row">
 
-        while ($mostrar = mysqli_fetch_assoc($query)) {
-            echo "<li class='card'>";
-            //echo "<div class='img'><img src='Imagenes/" . $mostrar['imagen'] . "' alt='img' draggable='false'></div>";
-            echo "<h2 class='justify-center text-center'>" . $mostrar['NombreProducto'] . "</h2>";
-            echo "<span>" . $mostrar['descripcion'] . "</span>";
-            echo "<a class='btn btn-outline-primary' href='Subasta.php?id=" . $mostrar['fkCodProducto'] . "'>Ver obra</a>";
-            echo "</li>";
-            
-            $mostrar['Peso'];
-            $mostrar['Tamano'];
-            $mostrar['categoria'];
-        }
+        <div class="col-4 col-12 col-md-4 ml-3">
+
+        <a class="bot w-75 btn btn-success" style="font-size: 35px;">Subastar obra+</a>
+
+        </div>
+
+        <div class="col-4 col-12 col-md-4 ml-3">
+    
+        </div>
+
+        <div class="col-4 col-12 col-md-4 ml-3">
+
+            <form action="GestionObraSubasta.php" method="get">
+            <input class="form-control" type="text" name="busqueda" placeholder="Buscar por fecha de inicio o fecha de finalizacion de la subasta" required>
+            <br>
+            <button type="submit" class="btn btn-outline-success" name="buscar">Buscar</button>
+            </form>
+
+            <br>
+
+            <form action="GestionObraSubasta.php" method="get">
+            <button name="MostrarTodo" type="submit" class="btn btn-outline-primary" style="position: relative; left: 100px; top: -63px;">Mostrar todos los registros</button>
+          </form> 
+          
+          <a class="btn btn-outline-warning" href="../Reportes/ReportesSubasta.php" style="position: relative; left: 350px; top: -100px;">Generar reportes</a>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-12">
+
+        <table class="table text-center justify-content-center align-items-center">
+
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha de finalizacion</th>
+                    <th>Fecha de inicio</th>
+                    <th>Categoria</th>
+                    <th>Ofertas ofrecidas</th>
+                    <th>Oferta mas alta</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+<?php
+include_once "ConexionBD.php";
+
+if (isset($_GET['buscar'])) {
+
+    $buscar = $_GET['busqueda'];
+
+    $select = "SELECT COUNT(oferta.PkCod_oferta) as Montos, MAX(oferta.Monto) as MaxMonto, Peso, Tamano, categoria, descripcion, NombreProducto, fkCodProducto, FechaFinalizacion, FechaInicio from oferta
+    inner join subasta on oferta.fkcod_subasta = subasta.PkCodSubasta
+    inner join obra on subasta.fkCodProducto = obra.PkCod_Producto
+    WHERE FechaFinalizacion LIKE '$buscar%' or FechaInicio LIKE '$buscar%'
+    group by subasta.pkCodSubasta";
+
+    $query = mysqli_query($conectar, $select);
+
+    while ($mostrar = mysqli_fetch_assoc($query)) {
         ?>
-    </ul>
-    <i id="right" class="icon2 fa-solid fa-angle-right"></i>
+          <tr> 
+      <td><?php echo $mostrar['NombreProducto']?></td>
+      <td><?php echo $mostrar['FechaFinalizacion']?></td>
+      <td><?php echo $mostrar['FechaInicio']?></td>
+      <td><?php echo $mostrar['categoria']?></td>
+      <td><?php echo $mostrar['Montos']?></td>
+      <td><?php echo $mostrar['MaxMonto']?></td>
+      <td>
+        <div>
+        <?php echo "<a class='btn btn-outline-primary' href='EditarObraSubasta.php?id=" . $mostrar['fkCodProducto'] . "'>EDITAR</a>";?>
+        <?php echo "<a class='btn btn-outline-danger' href='EliminarObraSubasta.php?id=" . $mostrar['fkCodProducto'] . "'>BORRAR</a>";?>
+       </div>
+    </td>
+   </tr>
+        <?php
+    }
+}
+    elseif (isset($_GET['MostrarTodo'])){
+
+      $select = "SELECT COUNT(oferta.PkCod_oferta) as Montos, MAX(oferta.Monto) as MaxMonto, Peso, Tamano, categoria, descripcion, NombreProducto, fkCodProducto, FechaFinalizacion, FechaInicio from oferta
+      inner join subasta on oferta.fkcod_subasta = subasta.PkCodSubasta
+      inner join obra on subasta.fkCodProducto = obra.PkCod_Producto
+      group by subasta.pkCodSubasta";
+      $query = mysqli_query($conectar, $select);
+
+    while ($mostrar = mysqli_fetch_assoc($query)) {
+        ?>
+           <tr>
+           <tr>
+      <td><?php echo $mostrar['NombreProducto']?></td>
+      <td><?php echo $mostrar['FechaFinalizacion']?></td>
+      <td><?php echo $mostrar['FechaInicio']?></td>
+      <td><?php echo $mostrar['categoria']?></td>
+      <td><?php echo $mostrar['Montos']?></td>
+      <td><?php echo $mostrar['MaxMonto']?></td>
+      <td>
+        <div>
+        <?php echo "<a class='btn btn-outline-primary' href='EditarObraSubasta.php?id=" . $mostrar['fkCodProducto'] . "'>EDITAR</a>";?>
+        <?php echo "<a class='btn btn-outline-danger' href='EliminarObraSubasta.php?id=" . $mostrar['fkCodProducto'] . "'>BORRAR</a>";?>
+       </div>
+    </td>
+   </tr>
+        <?php
+    }
+
+    }
+
+ else {
+    $select = "SELECT COUNT(oferta.PkCod_oferta) as Montos, MAX(oferta.Monto) as MaxMonto, Peso, Tamano, categoria, descripcion, NombreProducto, fkCodProducto, FechaFinalizacion, FechaInicio from oferta
+    inner join subasta on oferta.fkcod_subasta = subasta.PkCodSubasta
+    inner join obra on subasta.fkCodProducto = obra.PkCod_Producto
+    group by subasta.pkCodSubasta";
+    $query = mysqli_query($conectar, $select);
+
+    while ($mostrar = mysqli_fetch_assoc($query)) {
+        ?>
+           <tr>
+      <td><?php echo $mostrar['NombreProducto']?></td>
+      <td><?php echo $mostrar['FechaFinalizacion']?></td>
+      <td><?php echo $mostrar['FechaInicio']?></td>
+      <td><?php echo $mostrar['categoria']?></td>
+      <td><?php echo $mostrar['Montos']?></td>
+      <td><?php echo $mostrar['MaxMonto']?></td>
+      <td>
+        <div>
+        <?php echo "<a class='btn btn-outline-primary' href='EditarObraSubasta.php?id=" . $mostrar['fkCodProducto'] . "'>EDITAR</a>";?>
+        <?php echo "<a class='btn btn-outline-danger' href='EliminarObraSubasta.php?id=" . $mostrar['fkCodProducto'] . "'>BORRAR</a>";?>
+       </div>
+    </td>
+   </tr>
+        <?php
+    }
+}
+?>
+</tbody>
+
+</table>
+
 </div>
 
+    </div>
+
+  </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
     <br>
@@ -141,7 +290,7 @@
     <br>
     <br>
     <div class="container-fluid-1">
-      <footer class="py-5">
+      <footer class="py-5 w-100">
         <div class="row">
           <div class="cont col-6 col-md-2 mb-4">
             <h5>Secciones</h5>
@@ -177,7 +326,7 @@
         </div>
         <br>
         <br>
-        <div class="d-flex flex-column flex-sm-row justify-content-center  border-top">
+        <div class="d-flex flex-column flex-sm-row justify-content-center border-top">
           <p>© 2023 ImpulsArt Company, Inc.</p>
         </div>
       </footer>

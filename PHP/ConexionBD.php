@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $clave = "";
-$bd = "impulsart";
+$bd = "impulsart2";
 
 $conectar = mysqli_connect($host, $user, $clave, $bd);
 

@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+include_once "ConexionBD.php";
+
+$idUser = $_SESSION['id_user'];
+
+$select = "SELECT * FROM usuario where Pk_Identificacion ='$idUser'";
+$query = mysqli_query($conectar, $select);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <script src="../JS/checkout.js" defer></script>
-    <script src="../JS/Script.js" defer></script>
+    <script src="../JS/ValidarSesion.js" defer></script>
 </head>
 <body>
     
@@ -41,7 +54,7 @@
                   <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                       <li class="nav-item">
-                        <a class="nav-link" href="ImpulsArt.html">Inicio</a>
+                        <a class="nav-link" href="ImpulsArt.php">Inicio</a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" href="SubirObra.html">Subir Obras</a>
@@ -174,7 +187,9 @@
 
      //SELECT VALIDAR PRECIO INICIAL
 
-      //-----------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------//
+
+     
 
       echo "
         <div class='col-4 col-12 col-md-4'>
@@ -235,57 +250,18 @@
        </div>
        
        </div>
+        
+       <br>";
+       ?>
 
-       <div class='row text-center'>
+       <div class="row text-center">
 
-        <div class='col-4 col-12 col-md-4 ml-3'>
-          <button type='button' class='btn text-white w-75' id='color' style='font-size: 30px;'>Participar en la subasta</button>
-        </div>
-      
-        <div id='div-seccion-montos' class='col-8 col-12 col-md-4 ml-3'>
+        <div class="col-4 col-12 col-md-4 ml-3">
+        
+        <h1>Lista de montos:</h1>
+        <br>
 
-          <div id='montos-ofertas'>
-
-            <form action='' method='post'>
-
-              <h2 id='d-flex'>Tu monto actual:</h2>
-              
-              <input type='number' id='monto-actual' class='form-control' placeholder='$ 0 COP' min='{$mostrarPrecio['PrecioInicial']}' required>
-              <button type='submit' class='btn text-white bg-success' style='position: relative; margin-left: 20px;'>Ingresar oferta</button>
-              <br>
-              <br>
-
-              <div class='d-flex' style='position: relative; left: 105px;'>
-
-              <h5 class='text-center text-danger' style='position: relative; left: 90px; margin-right: 15px; top: -5px;'>Atencion:</h5>
-              <p class='text-center' style='position: relative; left: 90px;'>Su monto debe tener un valor minimo de {$mostrarPrecio['PrecioInicial']}</p>
-
-              </div>
-
-            <br>
-            <br>
-              
-            </form>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class='row'>
-
-        <div class='col-12 col-12 col-md-4 ml-3'>
-
-          <div>
-            <h1>Lista de montos:</h1>
-          </div>
-
-          <br>"
-
-          ?>
-          
-          <table class='table text-center justify-content-center align-items-center'>
+        <table class="table text-center justify-content-center align-items-center">
 
           <thead>
             <tr>
@@ -300,9 +276,9 @@
 
         <?php
 
-      //-----------------------------------------------------------------------------------//
+        //-----------------------------------------------------------------------------------//
 
-      //SELECT LISTA DE MONTOS
+        //SELECT LISTA DE MONTOS
 
       $selectLista = "SELECT usuario.Nombre, oferta.Monto, oferta.FechaOferta, oferta.HoraOferta from usuario 
       inner join cliente on usuario.Pk_Identificacion = cliente.Fk_Identificacion
@@ -318,7 +294,7 @@
 
         while ($mostrarLista = mysqli_fetch_assoc($queryLista)) {
           
-          ?>
+        ?>
 
       <tr>
         <td><?php echo $mostrarLista['Nombre']?></td>
@@ -336,12 +312,45 @@
 
         </div>
 
-      </div>
+        <?php
 
-   </div>
+      echo "
+        <div id='div-seccion-montos' class ='col-8 col-12 col-md-4 ml-3'>
+
+          <div id='montos-ofertas'>
+
+            <form action='' method='post'>
+
+              <h2 id='d-flex'>Tu monto actual:</h2>
+              
+              <input type='number' id='monto-actual' class='form-control' placeholder='$ 0 COP' min='{$mostrarPrecio['PrecioInicial']}' required>
+              <button type='submit' class='btn text-white bg-success' style='position: relative; margin-left: 20px;'>Ingresar oferta</button>
+              <br>
+              <br>
+              <br>
+
+              <div class='d-flex' style='position: relative; left: 105px;'>
+
+              <h5 class='text-center text-danger' style='position: relative; left: 90px; margin-right: 15px; top: -5px;'>Atencion:</h5>
+              <p class='text-center' style='position: relative; left: 90px;'>Su monto debe tener un valor minimo de {$mostrarPrecio['PrecioInicial']}'</p>
+
+              </div>
+
+            <br>
+            <br>
+              
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>";
+
+      ?>
+      
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-   <script src="JS/Script.js" defer></script>
 
 </body>
 </html>

@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+include_once "ConexionBD.php";
+
+$idUser = $_SESSION['id_user'];
+
+$select = "SELECT * FROM usuario where Pk_Identificacion ='$idUser'";
+$query = mysqli_query($conectar, $select);
+$datos = mysqli_fetch_assoc($query);
+
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -38,7 +52,7 @@
                     <div class="offcanvas-body">
                       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                          <a class="nav-link" href="ImpulsArt.html">Inicio</a>
+                          <a class="nav-link" href="ImpulsArt.php">Inicio</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="SubirObra.html">Subir Obras</a>
@@ -68,14 +82,20 @@
                     </div>
 
                     <div class="columna-link col-12 col-md-4 col-lg-4 ">
-                      <ul class="nav nav-underline justify-content-end">
-                        <li class="nav-item">
-                          <a class="nav-link link-light" href="Registrarse.html">Registrarse </a>
-                        </li>
-                        <h5 class="separacion">/</h6>
-                        <li class="nav-item">
-                          <a class="nav-link link-light" href="IniciarSesion.html">Iniciar Sesion</a>
-                        </li>
+        <ul class="nav nav-underline justify-content-end">
+          <li class="nav-item">
+            <h5 class="text-white"><?php echo $datos['Nombre'] . " " . $datos['Apellidos']; ?></h5>
+          </li>
+          <h5 class="separacion">/</h6>
+
+          <div class="dropdown">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="bi bi-person-circle icono-grande"></i>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="CerrarSesion.php">Cerrar sesion</a></li>
+  </ul>
+</div>
                       </ul>
                       <div class="container">
                         <div class="row">
@@ -114,7 +134,7 @@
         while ($mostrar = mysqli_fetch_assoc($query)) {
           
             echo "<li class='card'>";
-            //echo "<div class='img'><img src='Imagenes/" . $mostrar['imagen'] . "' alt='img' draggable='false'></div>";
+            echo "<div class='img'><img src='../Imagenes/" . $mostrar['imagen'] . "' alt='img' draggable='false'></div>";
             echo "<h2 class='justify-center text-center'>" . $mostrar['NombreProducto'] . "</h2>";
             echo "<span>" . $mostrar['descripcion'] . "</span>";
             echo "</li>";

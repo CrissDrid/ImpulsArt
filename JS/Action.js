@@ -53,7 +53,7 @@ function showFile() {
 		};
 		fileReader.readAsDataURL(file);
 	} else {
-		alert("Esto no es una imagen... PENDEJO!");
+		alert("Esto no es una imagen");
 		dropArea.classList.remove("active"); // remove the "active" class to disable the border
 		dragText.textContent = "Arrastrar y Soltar para Cargar Archivo";
 	}

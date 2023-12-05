@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+include_once "ConexionBD.php";
+
+$idUser = $_SESSION['id_user'];
+
+$select = "SELECT * FROM usuario where Pk_Identificacion ='$idUser'";
+$query = mysqli_query($conectar, $select);
+$datos = mysqli_fetch_assoc($query);
+
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -69,15 +83,20 @@
                     </div>
 
                     <div class="columna-link col-12 col-md-4 col-lg-4 ">
-                        <ul class="nav nav-underline justify-content-end">
-                            <li class="nav-item">
-                              <h5 class="text-white">Carlos Cordero</h5>
-                            </li>
-                            <h5 class="separacion">/</h6>
-                            <li class="nav-item">
-                                <i class="bi bi-person-circle icono-grande"></i>
-                            </li>
-                          </ul>
+        <ul class="nav nav-underline justify-content-end">
+          <li class="nav-item">
+            <h5 class="text-white"><?php echo $datos['Nombre'] . " " . $datos['Apellidos']; ?></h5>
+          </li>
+          <h5 class="separacion">/</h6>
+
+          <div class="dropdown">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="bi bi-person-circle icono-grande"></i>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="CerrarSesion.php">Cerrar sesion</a></li>
+  </ul>
+</div>
                       <div class="container">
                         <div class="row">
                             <div class="col-md-9">

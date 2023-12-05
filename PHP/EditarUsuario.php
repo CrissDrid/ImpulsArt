@@ -58,49 +58,49 @@ include_once "ConexionBD.php";
         <form action="ActualizarDatosUsuario.php" method="post">
 
         <div class="cedula">
-            <input class="form-control" type="number" name="id" id="nombre" placeholder="Editar Cedula"  value="<?php echo $Pk_identificacion; ?>">
+            <input class="form-control" type="number" name="id" id="nombre" placeholder="Editar Cedula"  value="<?php echo $Pk_identificacion; ?>" required>
         </div>
 
         <br>
 
           <div class="nombre">
-            <input class="form-control" type="text" name="Nombre" id="nombre" placeholder="Editar Nombre" value="<?php echo $Nombre; ?>">
+            <input class="form-control" type="text" name="Nombre" id="nombre" placeholder="Editar Nombre" value="<?php echo $Nombre; ?>" required>
         </div>
 
         <br>
 
         <div class="apellido">
-            <input class="form-control" type="text" name="Apellidos" id="apellido" placeholder="Editar Apellido" value="<?php echo $Apellido; ?>">
+            <input class="form-control" type="text" name="Apellidos" id="apellido" placeholder="Editar Apellido" value="<?php echo $Apellido; ?>" required>
         </div>
 
         <br>
 
         <div class="correo">
-            <input class="form-control" type="email" name="Email" id="correo" placeholder="Editar Correo" value="<?php echo $Email; ?>">
+            <input class="form-control" type="email" name="Email" id="correo" placeholder="Editar Correo" value="<?php echo $Email; ?>" required>
         </div>
 
         <br>
 
         <div class="contrasena">
-            <input class="form-control" type="password" name="Contrasena" id="contrasena" placeholder="Editar Contraseña" value="<?php echo $Contrasena; ?>">
+            <input class="form-control" type="password" name="Contrasena" id="contrasena" placeholder="Editar Contraseña" value="<?php echo $Contrasena; ?>" required>
         </div>
 
         <br>
 
         <div class="fecha_nacimiento">
-            <input class="form-control" type="date" name="FechaNacimiento" id="fecha_nacimiento" placeholder="Editar Fecha de Nacimiento" value="<?php echo $FechaNacimiento; ?>">
+            <input class="form-control" type="date" name="FechaNacimiento" id="fecha_nacimiento" placeholder="Editar Fecha de Nacimiento" value="<?php echo $FechaNacimiento; ?>" required>
         </div>
 
         <br>
 
         <div class="direccion">
-            <input class="form-control" type="text" name="Direccion" id="direccion" placeholder="Editar direccion" value="<?php echo $Direccion; ?>">
+            <input class="form-control" type="text" name="Direccion" id="direccion" placeholder="Editar direccion" value="<?php echo $Direccion; ?>" required>
         </div>
 
         <br>
 
         <div class="Numero">
-            <input class="form-control" type="text" name="NumCelular" id="Numero" placeholder="Editar numero telefonico" value="<?php echo $Numero; ?>">
+            <input class="form-control" type="text" name="NumCelular" id="Numero" placeholder="Editar numero telefonico" value="<?php echo $Numero; ?>" required>
         </div>
 
         <br>

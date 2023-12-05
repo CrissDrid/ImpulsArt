@@ -83,13 +83,6 @@ h5{
     line-height: 55px;
     transition: background-color 0.3s;
 }
-
-@media (max-width: 768px) {
-    .icon-link {
-        margin-left: 10px;
-    }
-}
-
 .icon-link:hover {
     background-color: #000;
     color: aliceblue;
@@ -217,6 +210,3 @@ h5{
     display: inline-block;
     margin-left: 10px;
 }
-
-
-  
