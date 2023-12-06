@@ -27,7 +27,7 @@ if (isset($_FILES["imagine"])) {
         }
 
         // Mover la imagen a la carpeta de destino
-        $src = '../ObrasSubidas/'. $nombre;
+        $src = '../ObrasSubidas/' . $nombre;
         move_uploaded_file($r_prov, $src);
     } else {
         echo "Error al subir la imagen: " . $_FILES["imagine"]["error"];
@@ -55,4 +55,3 @@ if (mysqli_query($conectar, $query)) {
 } else {
     echo "Error al insertar datos: " . mysqli_error($conectar);
 }
-?>

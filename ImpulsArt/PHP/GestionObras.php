@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ImpulsArt</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="shortcut icon" href="../Imagenes/cepillo-de-pintura.png">
   <link rel="stylesheet" href="../CSS/EstiloGestioObra.css">
   <link rel="stylesheet" href="../CSS/Estilo.css">
@@ -27,16 +26,14 @@
       <div class="columna col-12 col-md-4 col-lg-4">
         <nav class="navbar navbar-dark ">
           <div>
-            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon align-items-center"></span>
             </button>
             <div class="offcanvas offcanvas-start " id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" onclick="redirectToImpulsArt()"
-                  onmouseenter="this.style.cursor='pointer'">ImpulsArt</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                  aria-label="Close"></button>
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" onclick="redirectToImpulsArt()" onmouseenter="this.style.cursor='pointer'">ImpulsArt
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <form class=" d-flex mt-4 me-2 ms-2" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -75,16 +72,16 @@
         <img class="pincel img-fluid" src="../Imagenes/cepillo-de-pintura.png" alt="">
       </div>
 
-    <div class="columna-link col-12 col-md-4 col-lg-4 ">
-    <ul class="nav nav-underline justify-content-end">
-        <li class="nav-item">
+      <div class="columna-link col-12 col-md-4 col-lg-4 ">
+        <ul class="nav nav-underline justify-content-end">
+          <li class="nav-item">
             <h5 class="text-white">Carlos Cordero</h5>
-        </li>
-        <h5 class="separacion">/</h6>
-        <li class="nav-item">
-            <i class="bi bi-person-circle icono-grande"></i>
-        </li>
-    </ul>
+          </li>
+          <h5 class="separacion">/</h6>
+            <li class="nav-item">
+              <i class="bi bi-person-circle icono-grande"></i>
+            </li>
+        </ul>
         <div class="container">
           <div class="row">
             <div class="col-md-9">
@@ -105,151 +102,147 @@
     </div>
   </div>
   <!-- Fin del Header -->
-<br>
-<!-- Inicio Contenido -->
-<div class="container-fluid">
+  <br>
+  <!-- Inicio Contenido -->
+  <div class="container-fluid">
 
     <div class="row">
 
-        <div class="col-4 col-12 col-md-4 ml-3">
+      <div class="col-4 col-12 col-md-4 ml-3">
 
         <a href="../SubirObra.html" class="bot w-75 btn btn-success" style="font-size: 35px;">Nueva Obra+</a>
 
-        </div>
+      </div>
 
-        <div class="col-4 col-12 col-md-4 ml-3">
-    
-        </div>
+      <div class="col-4 col-12 col-md-4 ml-3">
 
-        <div class="col-4 col-12 col-md-4 ml-3">
+      </div>
 
-            <form action="GestionObras.php" method="get">
-            <input class="form-control" type="text" name="busqueda" placeholder="Buscar por fecha de inicio o fecha de finalizacion de la subasta" required>
-            <br>
-            <button type="submit" class="btn btn-outline-success" name="buscar">Buscar</button>
-            </form>
+      <div class="col-4 col-12 col-md-4 ml-3">
 
-            <br>
+        <form action="GestionObras.php" method="get">
+          <input class="form-control" type="text" name="busqueda" placeholder="Buscar por fecha de inicio o fecha de finalizacion de la subasta" required>
+          <br>
+          <button type="submit" class="btn btn-outline-success" name="buscar">Buscar</button>
+        </form>
 
-            <form action="GestionObras.php" method="get">
-            <button name="MostrarTodo" type="submit" class="btn btn-outline-primary" style="position: relative; left: 100px; top: -63px;">Mostrar todos los registros</button>
-          </form> 
-          
-          <a class="btn btn-outline-warning" href="../Reportes/ReportesSubasta.php" style="position: relative; left: 350px; top: -100px;">Generar reportes</a>
+        <br>
 
-        </div>
+        <form action="GestionObras.php" method="get">
+          <button name="MostrarTodo" type="submit" class="btn btn-outline-primary" style="position: relative; left: 100px; top: -63px;">Mostrar todos los registros</button>
+        </form>
+
+        <a class="btn btn-outline-warning" href="../Reportes/ReportesSubasta.php" style="position: relative; left: 350px; top: -100px;">Generar reportes</a>
+
+      </div>
 
     </div>
-        <table class="table table-hover">
-        <thead>
+    <table class="table table-hover">
+      <thead>
         <tr>
-            <th class="text-center" scope="col">ID</th>
-            <th class="text-center" scope="col">Nombre Obra</th>
-            <th class="text-center" scope="col">Costo</th>
-            <th class="text-center" scope="col">Peso</th>
-            <th class="text-center" scope="col">Tamaño</th>
-            <th class="text-center" scope="col">Cantidad</th>
-            <th class="text-center" scope="col">Categoria</th>
-            <th class="text-center" scope="col">Descripcion</th>
-            <th class="text-center" scope="col">Imagen</th>
-            <th class="text-center" scope="col">Acciones</th>
+          <th class="text-center" scope="col">ID</th>
+          <th class="text-center" scope="col">Nombre Obra</th>
+          <th class="text-center" scope="col">Costo</th>
+          <th class="text-center" scope="col">Peso</th>
+          <th class="text-center" scope="col">Tamaño</th>
+          <th class="text-center" scope="col">Cantidad</th>
+          <th class="text-center" scope="col">Categoria</th>
+          <th class="text-center" scope="col">Descripcion</th>
+          <th class="text-center" scope="col">Imagen</th>
+          <th class="text-center" scope="col">Acciones</th>
         </tr>
-    </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <?php
-include_once "ConexionBD.php";
+        include_once "ConexionBD.php";
 
-if (isset($_GET['buscar'])) {
+        if (isset($_GET['buscar'])) {
 
-    $buscar = $_GET['busqueda'];
+          $buscar = $_GET['busqueda'];
 
-    $select = "SELECT * FROM obra WHERE NombreProducto LIKE '$buscar%' ORDER BY PkCod_Producto";
+          $select = "SELECT * FROM obra WHERE NombreProducto LIKE '$buscar%' ORDER BY PkCod_Producto";
 
-    $query = mysqli_query($conectar, $select);
+          $query = mysqli_query($conectar, $select);
 
-    while ($mostrar = mysqli_fetch_assoc($query)) {
-        ?>
-          <tr>
-                <td><?php echo $mostrar['PkCod_Producto']?></td>
-                <td><?php echo $mostrar['NombreProducto']?></td>
-                <td><?php echo $mostrar['Costo']?></td>
-                <td><?php echo $mostrar['Peso']?></td>
-                <td><?php echo $mostrar['Tamano']?></td>
-                <td><?php echo $mostrar['Cantidad']?></td>
-                <td><?php echo $mostrar['categoria']?></td>
-                <td><?php echo $mostrar['descripcion']?></td>
-                <td><img src="../ObrasSubidas/<?php echo $mostrar['imagen']; ?>" alt="Imagen" draggable="false" style="max-width: 200px; height: auto; border-radius: 5px;"></td>
-                <td>
-        <div>
-        <?php echo "<a class='btn btn-outline-primary' href='EditarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>EDITAR</a>";?>
-        <?php echo "<a class='btn btn-outline-danger' href='EliminarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>BORRAR</a>";?>
-       </div>
-    </td>
-   </tr>
-        <?php
-    }
-}
-    elseif (isset($_GET['MostrarTodo'])){
-
-      $select = "SELECT * FROM obra";
-    $query = mysqli_query($conectar, $select);
-
-    while ($mostrar = mysqli_fetch_assoc($query)) {
+          while ($mostrar = mysqli_fetch_assoc($query)) {
         ?>
             <tr>
-                <td><?php echo $mostrar['PkCod_Producto']?></td>
-                <td><?php echo $mostrar['NombreProducto']?></td>
-                <td><?php echo $mostrar['Costo']?></td>
-                <td><?php echo $mostrar['Peso']?></td>
-                <td><?php echo $mostrar['Tamano']?></td>
-                <td><?php echo $mostrar['Cantidad']?></td>
-                <td><?php echo $mostrar['categoria']?></td>
-                <td><?php echo $mostrar['descripcion']?></td>
-                <td><img src="../ObrasSubidas/<?php echo $mostrar['imagen']; ?>" alt="Imagen" draggable="false" style="max-width: 200px; height: auto; border-radius: 5px;"></td>
-                <td>
+              <td><?php echo $mostrar['PkCod_Producto'] ?></td>
+              <td><?php echo $mostrar['NombreProducto'] ?></td>
+              <td><?php echo $mostrar['Costo'] ?></td>
+              <td><?php echo $mostrar['Peso'] ?></td>
+              <td><?php echo $mostrar['Tamano'] ?></td>
+              <td><?php echo $mostrar['Cantidad'] ?></td>
+              <td><?php echo $mostrar['categoria'] ?></td>
+              <td><?php echo $mostrar['descripcion'] ?></td>
+              <td><img src="../ObrasSubidas/<?php echo $mostrar['imagen']; ?>" alt="Imagen" draggable="false" style="max-width: 200px; height: auto; border-radius: 5px;"></td>
+              <td>
                 <div>
-                <?php echo "<a class='btn btn-outline-primary' href='EditarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>EDITAR</a>";?>
-                <?php echo "<a class='btn btn-outline-danger' href='EliminarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>BORRAR</a>";?>
-               </div>
-            </td>
-           </tr>
+                  <?php echo "<a class='btn btn-outline-primary' href='EditarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>EDITAR</a>"; ?>
+                  <?php echo "<a class='btn btn-outline-danger' onclick='confirmarBorrado(" . $mostrar['PkCod_Producto'] . ")'>BORRAR</a>"; ?>
+                </div>
+              </td>
+            </tr>
+          <?php
+          }
+        } elseif (isset($_GET['MostrarTodo'])) {
+
+          $select = "SELECT * FROM obra";
+          $query = mysqli_query($conectar, $select);
+
+          while ($mostrar = mysqli_fetch_assoc($query)) {
+          ?>
+            <tr>
+              <td><?php echo $mostrar['PkCod_Producto'] ?></td>
+              <td><?php echo $mostrar['NombreProducto'] ?></td>
+              <td><?php echo $mostrar['Costo'] ?></td>
+              <td><?php echo $mostrar['Peso'] ?></td>
+              <td><?php echo $mostrar['Tamano'] ?></td>
+              <td><?php echo $mostrar['Cantidad'] ?></td>
+              <td><?php echo $mostrar['categoria'] ?></td>
+              <td><?php echo $mostrar['descripcion'] ?></td>
+              <td><img src="../ObrasSubidas/<?php echo $mostrar['imagen']; ?>" alt="Imagen" draggable="false" style="max-width: 200px; height: auto; border-radius: 5px;"></td>
+              <td>
+                <div>
+                  <?php echo "<a class='btn btn-outline-primary' href='EditarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>EDITAR</a>"; ?>
+                  <?php echo "<a class='btn btn-outline-danger' onclick='confirmarBorrado(" . $mostrar['PkCod_Producto'] . ")'>BORRAR</a>"; ?>
+                </div>
+              </td>
+            </tr>
+          <?php
+          }
+        } else {
+          $select = "SELECT * FROM obra";
+          $query = mysqli_query($conectar, $select);
+
+          while ($mostrar = mysqli_fetch_assoc($query)) {
+          ?>
+            <tr>
+              <td><?php echo $mostrar['PkCod_Producto'] ?></td>
+              <td><?php echo $mostrar['NombreProducto'] ?></td>
+              <td><?php echo $mostrar['Costo'] ?></td>
+              <td><?php echo $mostrar['Peso'] ?></td>
+              <td><?php echo $mostrar['Tamano'] ?></td>
+              <td><?php echo $mostrar['Cantidad'] ?></td>
+              <td><?php echo $mostrar['categoria'] ?></td>
+              <td><?php echo $mostrar['descripcion'] ?></td>
+              <td><img src="../ObrasSubidas/<?php echo $mostrar['imagen']; ?>" alt="Imagen" draggable="false" style="max-width: 200px; height: auto; border-radius: 5px;"></td>
+              <td>
+                <div>
+                  <?php echo "<a class='btn btn-outline-primary' href='EditarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>EDITAR</a>"; ?>
+                  <?php echo "<a class='btn btn-outline-danger' onclick='confirmarBorrado(" . $mostrar['PkCod_Producto'] . ")'>BORRAR</a>"; ?>
+                </div>
+              </td>
+            </tr>
         <?php
-    }
-
-    }
-
- else {
-    $select = "SELECT * FROM obra";
-    $query = mysqli_query($conectar, $select);
-
-    while ($mostrar = mysqli_fetch_assoc($query)) {
+          }
+        }
         ?>
-           <tr>
-                <td><?php echo $mostrar['PkCod_Producto']?></td>
-                <td><?php echo $mostrar['NombreProducto']?></td>
-                <td><?php echo $mostrar['Costo']?></td>
-                <td><?php echo $mostrar['Peso']?></td>
-                <td><?php echo $mostrar['Tamano']?></td>
-                <td><?php echo $mostrar['Cantidad']?></td>
-                <td><?php echo $mostrar['categoria']?></td>
-                <td><?php echo $mostrar['descripcion']?></td>
-                <td><img src="../ObrasSubidas/<?php echo $mostrar['imagen']; ?>" alt="Imagen" draggable="false" style="max-width: 200px; height: auto; border-radius: 5px;"></td>
-                <td>
-                <div>
-                <?php echo "<a class='btn btn-outline-primary' href='EditarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>EDITAR</a>";?>
-                <?php echo "<a class='btn btn-outline-danger' href='EliminarObra.php?id=" . $mostrar['PkCod_Producto'] . "'>BORRAR</a>";?>
-               </div>
-            </td>
-           </tr>
-        <?php
-    }
-}
-?>   
-        </tbody>
-        </table>
-</div>
+      </tbody>
+    </table>
+  </div>
 
-<!-- Fin Contenido -->
+  <!-- Fin Contenido -->
   <br>
   <br>
   <!-- Inicio del Footer -->
@@ -297,9 +290,19 @@ if (isset($_GET['buscar'])) {
     </footer>
   </div>
   <!-- Fin del Footer -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+  <script>
+    function confirmarBorrado(id) {
+      if (confirm('¿Está seguro de borrar este registro?')) {
+        window.location.href = 'EliminarObra.php?id=' + id; // Redirige a la página de borrado si se confirma
+      } else {
+        // Código a ejecutar si el usuario cancela el borrado
+        // Puede ser un mensaje o simplemente no hacer nada
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+  </script>
 </body>
 
 </html>
