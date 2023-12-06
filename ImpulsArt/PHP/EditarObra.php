@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="shortcut icon" href="../Imagenes/cepillo-de-pintura.png">
-  <link rel="stylesheet" href="../CSS/EstiloGestioObra.css">
+  <link rel="stylesheet" href="../CSS/EstiloGestionObra.css">
   <link rel="stylesheet" href="../CSS/Estilo.css">
   <link rel="stylesheet" href="../CSS/EstiloSubirObra.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -46,7 +46,7 @@
               <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                   <li class="nav-item">
-                    <a class="nav-link" href="ImpulsArt.html">Inicio</a>
+                    <a class="nav-link" href="../ImpulsArt/ImpulsArt(administrador).html">Inicio</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="SubirObra.html">Subir Obras</a>
@@ -123,18 +123,32 @@ include_once "ConexionBD.php";
   $Cantidad = $mostrar['Cantidad'];
   $Categoria = $mostrar['categoria'];
   $Descripcion = $mostrar['descripcion'];
-  $Imagen= $mostrar['img src="../ObrasSubidas/'];
+  $Imagen= $mostrar['imagen'];
 
 ?>
 <form class="needs-validation" id="formulario" action="SubirObra.php" method="post" enctype="multipart/form-data">
     <div class="container">
       <div class="row-SubirObra">
         <div class="col-6">
-          <div class="drag-area text-center">
+        <div class="drag-area text-center position-relative">
             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <header>Arrastrar y Soltar para Cargar Archivo</header>
             <button type="button">Buscar Archivo</button>
-            <input type="file" id="imagine" name="imagine" value="<?php echo $mostrar['imagen']; ?>" hidden>
+            <input type="file" id="imagine" name="imagine" hidden>
+            <?php
+            include_once "ConexionBD.php";
+        if (!empty($Imagen)) {
+            $rutaImagen = "../ObrasSubidas/" . $Imagen; // Construir la ruta completa de la imagen
+            // Comprobar si la imagen existe en la carpeta
+            if (file_exists($rutaImagen)) {
+                echo '<img src="' . $rutaImagen . '" alt="Imagen de la obra" class="img position-absolute">';
+            } else {
+                echo '<p>La imagen no se encuentra</p>';
+            }
+        } else {
+            echo '<p>No se especificó una imagen</p>';
+        }
+        ?>
           </div>
           <div class="botones">
             <button type="button" class="delete">Eliminar</button>
@@ -252,6 +266,8 @@ include_once "ConexionBD.php";
     </footer>
   </div>
   <!-- Fin del Footer -->
+  <script src="../JS/ScriptSubirObra.js"></script>
+  <script src="../JS/ScriptGuardarObra.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
