@@ -1,0 +1,16 @@
+.check{
+    margin: 10px;
+}
+.texto{
+    color: blueviolet;
+    font-family: 'Comic Neue', cursive;
+    font: 800;
+}
+.cant{
+    background-color: blueviolet;
+}
+
+.bot{
+    border: blueviolet;
+    background-color: blueviolet;
+}
